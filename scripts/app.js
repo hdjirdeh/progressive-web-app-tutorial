@@ -30,6 +30,7 @@
   };
 
   var app = {
+    hasRequestPending: false,
     isLoading: true,
     visibleCards: {},
     selectedCities: [],
@@ -232,6 +233,12 @@
       {key: initialWeatherForecast.key, label: initialWeatherForecast.label}
     ];
     app.saveSelectedCities();
+  }
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('./service-worker.js')
+             .then(function() { console.log('Service Worker Registered'); });
   }
 
 })();
